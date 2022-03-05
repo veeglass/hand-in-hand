@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./loginpage.scss";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
@@ -42,7 +42,7 @@ const useStyles = makeStyles({
 const Login = () => {
     const navigate = useNavigate();
   const classes = useStyles();
-  const { authenticate, login } = useMoralis();
+  const { authenticate, login, isAuthenticated} = useMoralis();
   const [values, setValues] = useState({
     username: "",
     password: "",
@@ -60,6 +60,10 @@ const Login = () => {
       navigate("/");
     }
   };
+
+  useEffect(() => {
+    if (isAuthenticated) navigate("/doyouwantpage")
+  }, [isAuthenticated, navigate])
 
   return (
     <Grid

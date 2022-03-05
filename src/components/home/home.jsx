@@ -23,12 +23,9 @@ const HomeComponent = () => {
       <div className="home-content">
         <h4>Give Love, Spread Kindness</h4>
         <p>
-          The world's first decentralized crowdfunding website that implements
-          blockchain technology to guarantee transparent transactions.
+          Hand-to-Hand, the world's first decentralized crowdfunding website that implements
+          blockchain technology for easy fundraising and instant transactions.
         </p>
-        {/* <Button variant="contained" href="#" onClick={ButtonFunc}>
-          Get Started
-        </Button> */}
       </div>
       <div className="home-imggrp2">
         <img src={Image3}></img>

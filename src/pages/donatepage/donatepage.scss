@@ -1,0 +1,82 @@
+@import "../../components/styles/_base.scss";
+
+.donatepage {
+  font-family: $font-primary;
+  &-header {
+    background-color: $color-primary;
+    display: flex;
+    padding: 0 3rem;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    font-family: $font-primary;
+    font-size: 1.2rem;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 1rem;
+      padding: 0 2rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 2rem 5rem;
+      flex-wrap: wrap;
+    }
+
+    @media only screen and (max-width: $bp-smallest) {
+      padding: 2rem 2rem;
+      flex-wrap: wrap;
+    }
+
+    h4 {
+      position: absolute;
+      right: 13rem;
+
+      @media only screen and (max-width: $bp-medium) {
+        right: 10rem;
+      }
+
+      @media only screen and (max-width: $bp-small) {
+        order: 2;
+        position: relative;
+        right: 0;
+      }
+    }
+  }
+}
+
+.donatepage-content {
+  background-color: #e5e5e5;
+  height: 80vh;
+  margin: 1rem 0;
+}
+
+.content-container3 {
+  display: flex;
+  flex-direction: column;
+
+  span {
+    margin-bottom: 1.5rem;
+    color: gray;
+    font-size: 0.8rem;
+  }
+}
+
+.content-container {
+  background-color: #fff;
+  width: 40vw;
+  margin: 6rem 0 !important;
+}
+
+.content-input {
+  margin-bottom: 0.5rem !important;
+
+  &:not(:first-child) {
+    margin-bottom: 2rem !important;
+  }
+}
+
+.content-title {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: $color-primary-light;
+}
