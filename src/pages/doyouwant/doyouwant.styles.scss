@@ -1,0 +1,28 @@
+@import "../../components/styles/_base.scss";
+
+.doyouwant-page {
+background-color: #e5e5e5;
+height: 96vh;
+font-family: $font-primary;
+width: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+
+h2 {
+   font-size: 3.5rem;
+    font-weight: 700;
+    color: $color-primary-light;
+}
+
+}
+
+.btn1 {
+margin-right: 3rem;
+}
+
+.link-btn {
+    text-decoration: none;
+    //font-size: 4rem;    
+}

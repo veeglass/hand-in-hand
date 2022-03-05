@@ -1,0 +1,55 @@
+@import "../styles/_base.scss";
+
+.h2h-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.4rem;
+    font-family: $font-primary;
+     height: 13vh;
+    background-color: #fff;
+
+    @media only screen and (max-width: $bp-large) {
+        font-size: 1rem;
+    }
+}
+
+.h2h-icon {
+    color: $color-primary-light;
+    margin-left: 9rem;
+    @media only screen and (max-width: $bp-large) {
+        margin-left: 5rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+        margin-left: 3rem;
+    }
+    @media only screen and (max-width: $bp-smallest) {
+        margin-left: 1.5rem;
+    }
+}
+
+.h2h-title {
+    left: 12rem;
+    position: absolute;
+    color: $color-primary-light;
+    font-weight: 400;
+
+    @media only screen and (max-width: $bp-large) {
+        left: 8rem;
+
+    }
+    @media only screen and (max-width: $bp-small) {
+        left: 6rem;
+    }
+
+    @media only screen and (max-width: $bp-smallest) {
+        left: 4.5rem;
+    }
+
+}
+
+.h2h-btn {
+   position: absolute;
+   right: 10rem;
+   width: 10rem;
+}
