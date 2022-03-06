@@ -1,6 +1,7 @@
-import { Button } from '@mui/material';
+
 import React from 'react';
 import { Link } from "react-router-dom";
+import { Button } from '@chakra-ui/react';
 import "./doyouwant.styles.scss";
 
 const DoYoWantPage = () => {
@@ -10,11 +11,11 @@ const DoYoWantPage = () => {
       <div>
         <Link to="/donate" className="link-btn btn1">
           {" "}
-          <Button variant="contained">DONATE TO A CAMPAIGN</Button>
+          <Button colorScheme="blue">DONATE TO A CAMPAIGN</Button>
         </Link>
         <Link to="/create" className="link-btn">
           {" "}
-          <Button variant="contained">CREATE A CAMPAIGN</Button>
+          <Button colorScheme="blue">CREATE A CAMPAIGN</Button>
         </Link>
       </div>
     </div>

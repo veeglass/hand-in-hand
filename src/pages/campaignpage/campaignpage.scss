@@ -1,0 +1,62 @@
+@import "../../components/styles/_base.scss";
+
+.campaignpage {
+     font-family: $font-primary;
+  &-header {
+    background-color: $color-primary;
+    display: flex;
+    padding: 1.5rem 3rem;
+    margin: .5rem .5rem;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    font-family: $font-primary;
+    font-size: 1.2rem;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 1rem;
+      padding: 0 2rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      padding: 2rem 5rem;
+      flex-wrap: wrap;
+    }
+
+    @media only screen and (max-width: $bp-smallest) {
+      padding: 2rem 2rem;
+      flex-wrap: wrap;
+    }
+
+    h4 {
+      position: absolute;
+      right: 13rem;
+
+      @media only screen and (max-width: $bp-medium) {
+        right: 10rem;
+      }
+
+      @media only screen and (max-width: $bp-small) {
+        order: 2;
+        position: relative;
+        right: 0;
+      }
+    }
+  }
+}
+
+.campaignpage-content {
+  background-color: #e5e5e5;
+  height: 83vh;
+  padding: 1rem;
+  margin: 0 .8rem;
+  
+}
+
+.campaignpage-content2 {
+  width: 40vw;
+  padding: 2rem;
+  height: 78vh;
+  background-color: #fff;
+  margin: 0 auto;
+}

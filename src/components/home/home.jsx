@@ -1,7 +1,6 @@
 import React from "react";
 import "./home.styles.scss";
 
-import { Button } from "@mui/material";
 
 import Image1 from "../../images/hand2hand-img1.jpg";
 import Image2 from "../../images/hand2hand-img2.jpg";
@@ -23,7 +22,7 @@ const HomeComponent = () => {
       <div className="home-content">
         <h4>Give Love, Spread Kindness</h4>
         <p>
-          Hand-to-Hand, the world's first decentralized crowdfunding website that implements
+          The world's first decentralized crowdfunding website that implements
           blockchain technology for easy fundraising and instant transactions.
         </p>
       </div>

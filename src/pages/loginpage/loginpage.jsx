@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles({
   rootContainer: {
-    height: "100vh",
+    height: "95vh",
     paddingTop: "5vh",
     paddingLeft: "5%",
     paddingRight: "5%",

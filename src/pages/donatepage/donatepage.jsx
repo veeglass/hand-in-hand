@@ -1,34 +1,39 @@
 import React, { useState } from "react";
-import { Button } from "@mui/material";
-import Grid from "@material-ui/core/Grid";
-import MuiAlert from "@mui/material/Alert";
-
-
-
-import TextField from "@material-ui/core/TextField";
+import {
+  Text,
+  Button,
+  FormLabel,
+  FormControl,
+  Input,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  useToast
+} from "@chakra-ui/react";
+import Balance from "../../components/balance";
 
 import "./donatepage.scss";
 import { useNavigate } from "react-router";
+import Moralis from "moralis";
 
-import { useWeb3Transfer, useMoralis} from "react-moralis";
-
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
-
-
+import { useWeb3Transfer, useMoralis } from "react-moralis";
 
 const DonatePage = ({ logout, user }) => {
-  const [amount, setAmount] = useState();
-  const [address, setAddress] = useState("");
-  const Moralis = useMoralis();
-  console.log(Moralis)
+  const [amount, setAmount] = useState(0);
+  const [receiver, setReceiver] = useState("");
+
+  const toast = useToast();
 
   const navigate = useNavigate();
+  const handleChange = (value) => {
+    setAmount(value);
+  };
 
   const { fetch, isFetching } = useWeb3Transfer({
-    amount: Moralis.Units.ETH(amount),
-    receiver: address,
+    amount: Moralis.Units.ETH(amount || 0),
+    receiver: receiver,
     type: "native",
   });
 
@@ -37,16 +42,6 @@ const DonatePage = ({ logout, user }) => {
     navigate("/");
   };
 
-  const handleChange1 = (event) => {
-    const { value } = event.target;
-    setAmount(value);
-  };
-
-  const handleChange2 = (event) => {
-    const { value } = event.target;
-    setAddress(value);
-  };
-  
   return (
     <div className="donatepage">
       {user ? (
@@ -55,73 +50,69 @@ const DonatePage = ({ logout, user }) => {
             {" "}
             <h3>Welcome!</h3>
             <h4>{user.getUsername()}</h4>
-            <Button variant="contained" onClick={logoutbutton}>
+            <Button colorScheme="blue" onClick={logoutbutton}>
               LOG OUT
             </Button>
           </div>
           <div className="donatepage-content">
-            <Grid
-              container
-              direction="column"
-              justifyContent="center"
-              alignItems="center"
-              spacing={2}
-            >
-              <Grid item xs={12} className="content-container">
-                <Grid
-                  container
-                  justifyContent="center"
-                  alignContent="center"
-                  className="content-title"
-                >
-                  <h3>DONATE FUNDS</h3>
-                </Grid>
-                <Grid
-                  container
-                  direction="column"
-                  justifyContent="center"
-                  alignItems="center"
-                >
-                  <form
+            <div className="donatepage-content2">
+              <Text fontSize="2xl" fontWeight="bold">
+                Send ETH
+              </Text>
+              <form
+                onSubmit={async e => {
+                  e.preventDefault();
+                  await Moralis.enableWeb3();
+                  fetch({
+                    onSuccess: () => {
+                      toast({
+                        title: "ETH Successfully Sent",
+                        description: "Fresh ETH are showing up in the receiver's wallet",
+                        status: "success",
+                        duration: 900,
+                        isClosable: true
+                      })
+                      setReceiver('')
                     
-                    className="content-container3"
-                  >
-
-                    
-                    <TextField
-                      variant="outlined"
-                      placeholder="Amount of ETH"
-                      type="number"
-                      step={0.1}
-                      onChange={handleChange1}
-                      value={amount}
-                      className="content-input"
-                      required
-                    />
-                    <span>Balance: $</span>
-
-                    <TextField
-                      id="standard-basic"
-                      type="text"
-                      placeholder="Receiver's address"
-                      variant="standard"
-                      value={address}
-                      onChange={handleChange2}
-                      className="content-input"
-                      required
-                    />
-                    <Button
-                      variant="contained"
-                      type="submit"
-                      className="content-input"
-                      
-                    >
-                      DONATE
-                    </Button>
-                  </form>
-                </Grid>
-              </Grid>
-            </Grid>
+                    },
+                    onError: (error) => {
+                      toast({
+                        title: "Error.",
+                        description: error,
+                        status: 'error',
+                        duration: '900',
+                        isClosable: true
+})
+                    },
+                  });
+                }}
+              >
+                <FormControl mt="4">
+                  <FormLabel htmlFor="amount">Amount of ETH</FormLabel>
+                  <NumberInput step={0.1} onChange={handleChange}>
+                    <NumberInputField id="amount" vale={amount} />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                  <Balance user={user}/>
+                  <FormLabel mt="4" htmlFor="receiver">
+                    Send to
+                  </FormLabel>
+                  <Input
+                    id="receiver"
+                    type="text"
+                    placeholder="Receiver's Address"
+                    value={receiver}
+                    onChange={(e) => setReceiver(e.target.value)}
+                  />
+                </FormControl>
+                <Button mt="6" type="submit" colorScheme="blue" disabled={isFetching}>
+                  DONATE
+                </Button>
+              </form>
+            </div>
           </div>
         </div>
       ) : (
