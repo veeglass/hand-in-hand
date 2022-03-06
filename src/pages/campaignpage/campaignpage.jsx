@@ -1,36 +1,39 @@
 import React, { useState } from "react";
 import "./campaignpage.scss";
 import {
+  Input,
   Text,
   Textarea,
   Button,
   FormLabel,
   FormControl,
-  Input,
   useToast,
 } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 
 const CampaignPage = ({ user, logout }) => {
+  const [input, setInput] = useState({
+    email: "",
+    name: "",
+    purpose: "",
+    address: "",
+  });
+
+  const { email, name, purpose, address } = input;
+
   const toast = useToast();
   const navigate = useNavigate();
   const logoutbutton = () => {
     logout();
     navigate("/");
-    };
-     const handleChange = (event) => {
-       const { value, name } = event.target;
-         console.log(value);
-       setInput(...Input, { [name]: value });
-     };
+  };
 
-    const [Input, setInput] = useState({
-        email: '',
-        name: '',
-        purpose: '',
-        address: ''
-    })
-    const { email, name, purpose, address } = Input;
+  const handleChange = (event) => {
+    const { value, name } = event.target;
+    console.log(value);
+    setInput({ ...input, [name]: value });
+  };
+
   return (
     <div className="campaignpage">
       {user ? (
@@ -51,9 +54,12 @@ const CampaignPage = ({ user, logout }) => {
               <form
                 onSubmit={async (e) => {
                   e.preventDefault();
-                                  setInput({
-                        
-                    })
+                  setInput({
+                    email: "",
+                    name: "",
+                    purpose: "",
+                    address: "",
+                  });
                   toast({
                     title: "Campaign created successfully",
                     description:
@@ -61,17 +67,29 @@ const CampaignPage = ({ user, logout }) => {
                     status: "success",
                     duration: 900,
                     isClosable: true,
-                  });
+                  })
                 }}
               >
                 <FormControl mt="3" isRequired>
                   <FormLabel htmlFor="email">Email address</FormLabel>
-                  <Input id="email" type="email" name={email} value={email} onChange={handleChange}/>
+                  <Input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={email}
+                    onChange={handleChange}
+                  />
 
                   <FormLabel mt="2" htmlFor="Name">
                     Campaign's title
                   </FormLabel>
-                  <Input id="name" type="text" name={name} value={name} onChange={handleChange}/>
+                  <Input
+                    id="name"
+                    type="text"
+                    name="name"
+                    value={name}
+                    onChange={handleChange}
+                  />
 
                   <FormLabel mt="2" htmlFor="purpose">
                     Purpose of Campaign
@@ -79,14 +97,21 @@ const CampaignPage = ({ user, logout }) => {
                   <Textarea
                     placeholder="Purpose of Campaign"
                     id="purpose"
-                    name={purpose}
+                    name="purpose"
                     value={purpose}
                     size="sm"
-                  onChange={handleChange}/>
+                    onChange={handleChange}
+                  />
                   <FormLabel mt="2" htmlFor="address">
                     ETH Address
                   </FormLabel>
-                  <Input id="address" type="text" name={address} value={address} onChange={handleChange}/>
+                  <Input
+                    id="address"
+                    type="text"
+                    name="address"
+                    value={address}
+                    onChange={handleChange}
+                  />
                 </FormControl>
                 <Button mt="6" type="submit" colorScheme="blue">
                   CREATE CAMPAIGN

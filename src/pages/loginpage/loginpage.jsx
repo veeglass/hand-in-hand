@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./loginpage.scss";
+
+import { useToast } from "@chakra-ui/react";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
@@ -40,9 +42,10 @@ const useStyles = makeStyles({
 });
 
 const Login = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const classes = useStyles();
-  const { authenticate, login, isAuthenticated} = useMoralis();
+  const toast = useToast();
+  const { authenticate, login, isAuthenticated } = useMoralis();
   const [values, setValues] = useState({
     username: "",
     password: "",
@@ -54,16 +57,28 @@ const Login = () => {
     // If no existing user found, create new one
     if (!res) {
       // throw error snackbar
-        console.error("No user found");
-        alert("User Not Found, Please create an account")
+      console.error("No user found");
+      alert("User Not Found, Please create an account");
     } else {
       navigate("/");
     }
   };
 
+  const MetaMaskLogin = () => {
+     toast({
+       title: "Metamask Plugin/App Required.",
+       description: "Please ensure you have Metamask on your device",
+       status: "success",
+       duration: 1500,
+       isClosable: true,
+     });
+    authenticate();
+
+  };
+
   useEffect(() => {
-    if (isAuthenticated) navigate("/doyouwantpage")
-  }, [isAuthenticated, navigate])
+    if (isAuthenticated) navigate("/doyouwantpage");
+  }, [isAuthenticated, navigate]);
 
   return (
     <Grid
@@ -134,7 +149,7 @@ const Login = () => {
           <div className="loginbtns">
             <Button
               variant="contained"
-              onClick={() => authenticate()}
+              onClick={MetaMaskLogin}
               color="secondary"
               className={classes.button1}
             >

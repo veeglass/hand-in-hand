@@ -18,7 +18,7 @@ import "./donatepage.scss";
 import { useNavigate } from "react-router";
 import Moralis from "moralis";
 
-import { useWeb3Transfer, useMoralis } from "react-moralis";
+import { useWeb3Transfer} from "react-moralis";
 
 const DonatePage = ({ logout, user }) => {
   const [amount, setAmount] = useState(0);
