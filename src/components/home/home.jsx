@@ -14,9 +14,9 @@ const HomeComponent = () => {
   return (
     <div className="home">
       <div className="home-imggrp1">
-        <img src={Image1}></img>
+        <img src={Image1} alt="image1"></img>
         <div className="line1">&nbsp;</div>
-        <img src={Image2}></img>
+        <img src={Image2} alt="image2"></img>
       </div>
 
       <div className="home-content">
@@ -27,9 +27,9 @@ const HomeComponent = () => {
         </p>
       </div>
       <div className="home-imggrp2">
-        <img src={Image3}></img>
+        <img src={Image3} alt="image3"></img>
         <div className="line2">&nbsp;</div>
-        <img src={Image4}></img>{" "}
+        <img src={Image4} alt="image4"></img>{" "}
       </div>
     </div>
   );
